@@ -49,9 +49,7 @@ function table({tableSelector}) {
         let tableHeight = +getComputedStyle(table).height.replace(/px/g, '');
         let indentBeforeTable = table.offsetTop;
         let scrollPosition = window.pageYOffset;
-        console.log('tableHeight: ' + tableHeight);
-        console.log('indentBeforeTable: ' + indentBeforeTable);
-        console.log('scrollPosition: ' + scrollPosition);
+
         if (scrollPosition > indentBeforeTable && scrollPosition < (indentBeforeTable + tableHeight)) {
             fixedSelectorHeadTR.style.top = '0';
             fixedSelectorHeadTR.style.position = 'fixed';
