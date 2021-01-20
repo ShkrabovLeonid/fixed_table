@@ -46,10 +46,19 @@ function table({tableSelector}) {
         fixedHeaderTable();
     });
     window.addEventListener('scroll', ()=>{
-        if (window.pageYOffset > table.offsetTop) {
+        let tableHeight = +getComputedStyle(table).height.replace(/px/g, '');
+        let indentBeforeTable = table.offsetTop;
+        let scrollPosition = window.pageYOffset;
+        console.log('tableHeight: ' + tableHeight);
+        console.log('indentBeforeTable: ' + indentBeforeTable);
+        console.log('scrollPosition: ' + scrollPosition);
+        if (scrollPosition > indentBeforeTable && scrollPosition < (indentBeforeTable + tableHeight)) {
             fixedSelectorHeadTR.style.top = '0';
             fixedSelectorHeadTR.style.position = 'fixed';
-        } else {
+        } else if (scrollPosition < indentBeforeTable) {
+            fixedSelectorHeadTR.style.top = '';
+            fixedSelectorHeadTR.style.position = '';
+        } else if (scrollPosition > (indentBeforeTable + tableHeight)) {
             fixedSelectorHeadTR.style.top = '';
             fixedSelectorHeadTR.style.position = '';
         }
